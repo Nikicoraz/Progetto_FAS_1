@@ -1,0 +1,6 @@
+services:
+  jupyter:
+    build: .
+    ports:
+      - 8888:8888
+
