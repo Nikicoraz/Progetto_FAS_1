@@ -9,13 +9,14 @@ WORKDIR /progetto/bash
 RUN "./dataset.sh" download
 RUN "./dataset.sh" prepare
 
-WORKDIR /progetto
-COPY --exclude=venv ./python ./python
-
 WORKDIR /progetto/python
+# Copio solo il file requirements per cachare solo le dipendenze, quindi aggiornando il notebook jupyter non serve riscaricare tutte le dipendenze
+COPY --exclude=venv ./python/requirements.txt .
 
 # Installazione delle dipendenze di python
 RUN "bash" "-c" "python3 -m venv ./venv && source ./venv/bin/activate && pip install -r requirements.txt"
+
+COPY --exclude=venv ./python .
 
 EXPOSE 8888
 

@@ -28,6 +28,9 @@ function download_dataset() {
 function prepare_dataset() {
     if ! [ -d "$DOMAINS_DIR" ]; then
         mkdir "$DOMAINS_DIR"
+    else
+        # Remove existing files since the script uses append mode
+        rm "$DOMAINS_DIR/"*
     fi
 
     # Add csv header without the domain to the files
