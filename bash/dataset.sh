@@ -1,4 +1,6 @@
 #!/bin/bash
+set -euo pipefail
+IFS=$'\n\t'
 
 DATASET_URL="https://www.kaggle.com/api/v1/datasets/download/nalisha/github-top-repositories-dataset-starred-project"
 DATA_DIR="../data"
