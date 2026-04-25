@@ -36,6 +36,12 @@ Le dipendenze dello script possono essere installate (o verificate) tramite il p
 Python viene utilizzato dentro al notebook Jupyter per effetturare delle analisi sul dataset.
 
 Le dipendenze di python sono elencate dentro al file `./python/requirements.txt`.
+Le dipendenze principali sono:
+
+- `pandas`: leggere file csv
+- `matplotlib`: generare grafici
+- `ipywidgets`: rendere i grafici interattivi con widget
+- `jupyter`: notebook e interfaccia web
 
 Ci sono due modi per installare le dipendenze di python
 
