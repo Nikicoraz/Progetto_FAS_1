@@ -64,7 +64,12 @@ function clean() {
     echo "Dataset directory removed"
 }
 
-# If no arguments are passed, execute all steps
+if [ $(basename $(pwd)) != "bash" ]; then
+    echo "Please execute the dataset script inside the bash directory"
+    exit 1
+fi
+
+# If no arguments are passed, execute all steps except clean
 if [ $# -eq 0 ]; then
     download_dataset
     prepare_dataset

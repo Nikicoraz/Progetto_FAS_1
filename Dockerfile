@@ -1,6 +1,6 @@
 # Fase di build in cui viene eseguito lo script bash, quindi si occupa di scaricare e preparare il dataset
 FROM alpine AS bash
-RUN apk update && apk add curl bash
+RUN apk --no-cache add curl bash
 
 WORKDIR /progetto
 COPY ./bash ./bash
@@ -11,7 +11,7 @@ RUN "./dataset.sh" prepare
 
 # Build dell'immagine finale che quindi eseguirà il notebook Jupyter
 FROM alpine
-RUN apk update && apk add python3
+RUN apk add --no-cache python3
 
 WORKDIR /progetto/python
 # Copio solo il file requirements per cachare solo le dipendenze, quindi aggiornando il notebook jupyter non serve riscaricare tutte le dipendenze
@@ -25,4 +25,6 @@ COPY --from=bash /progetto/data /progetto/data
 
 EXPOSE 8888
 
+# Usare questo entrypoint se non si vuole usare un token per accedere all'interfaccia web
+# ENTRYPOINT ["/bin/sh", "-c", "source ./venv/bin/activate && jupyter notebook Analisi.ipynb --allow-root --ip=0.0.0.0 --no-browser --NotebookApp.token='' --NotebookApp.password=''"]
 ENTRYPOINT ["/bin/sh", "-c", "source ./venv/bin/activate && jupyter notebook Analisi.ipynb --allow-root --ip=0.0.0.0 --no-browser"]
