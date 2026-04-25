@@ -64,3 +64,41 @@ pip install -r requirements.txt
 ```
 jupyter notebook Analisi.ipynb
 ```
+
+## Docker
+Il progetto mette a disposizione anche un Dockerfile con cui si può creare un'immagine docker con un'istanza di Jupyter per poter visualizzare il contenuto del Jupyter notebook.
+
+L'immagine può essere compilata con il comando:
+```
+docker build -t local/top_github .
+```
+
+e eseguita con il comando:
+```
+docker run --rm -p 8888:8888 local/top_github
+```
+
+I file del dataset nel container sono scaricati direttamente nell'immagine, e non montati come volume, per cui ogni modifica al notebook tramite l'interfaccia web fornita dal container non è persistente.
+
+Il build dell'immagine docker è suddivisa in due stage, uno per scaricare e preparare il dataset e uno per scaricare le dipendenze di Python.
+
+La suddivisione è fatta per ottenere un'immagine finale più piccola, in quanto non contiene le dipendenze bash o comunque file non utilizzati dal notebook, ma soprattutto per poter parallelizzare la preparazione del dataset e il download delle dipendenze di Python in quanto sono i passaggi che richiedono più tempo.
+
+Per comodità, è messo a disposizione anche un file `docker-compose.yml` in cui è specificato di fare il build dell'immagine e di fare il port-forwarding della porta 8888 del container sulla porta 8888 dell'host.
+
+Per avviare il file docker compose si può utilizzare il comando
+```
+docker compose up
+```
+## Ansible
+Nel progetto è presente un playbook ansible, diviso in due role, che assicura che il sistema abbia tutte le dipendenze per eseguire il progetto.
+
+Il primo role si chiama `bootstrap` e si occupa di installare python negli host nel gruppo `new`. Questo sia per poter utilizzare la parte di python del progetto, sia per eseguire poi il secondo role siccome per eseguire i moduli ansible è richiesto python.
+
+Il secondo role si chiama `install_packages` e si assicura che tutte le dipendenze per poter utilizzare il progetto siano installate.
+
+Di default, nel file di inventario è impostato solo l'host `localhost`, però contiene anche un esempio di configurazione commentato per un altro host.
+Per eseguire il playbook ansible (all'interno della cartella `./ansible/`) si può utilizzare il comando:
+```
+ansible-playbook -i inventory.ini playbook.yml
+```

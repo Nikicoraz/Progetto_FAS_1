@@ -1,2 +1,12 @@
-- import_playbook: modules/bootstrap.yml
-- import_playbook: modules/install_packages.yml
+- name: Bootstrap python
+  hosts: new
+  gather_facts: false
+
+  roles:
+    - bootstrap
+
+- name: Install packages
+  hosts: all
+  
+  roles:
+    - install_packages

@@ -1,4 +1,6 @@
 #!/bin/bash
+set -euo pipefail
+IFS=$'\n\t'
 
 RUN_DIRECTORY=python
 
@@ -12,6 +14,8 @@ if ! source ./venv/bin/activate; then
     if ! python3 -m venv venv; then
         echo "Python was not found, exiting..."
         exit 1
+    else
+        source ./venv/bin/activate
     fi
 fi
 

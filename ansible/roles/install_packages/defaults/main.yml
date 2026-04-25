@@ -1,0 +1,5 @@
+packages:
+  - curl
+  - bash
+  - python3
+  - unzip
