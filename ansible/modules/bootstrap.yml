@@ -1,0 +1,33 @@
+- name: Bootstrap Python
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - name: Detect OS
+      raw: cat /etc/os-release
+      register: os
+      changed_when: false
+
+    - name: Check Python
+      raw: python3 --version
+      register: py
+      failed_when: false
+      changed_when: false
+
+    - name: Install Python (Debian/Ubuntu)
+      raw: apt-get update -qq && apt-get install -y python3
+      when:
+        - py.rc != 0
+        - "'debian' in os.stdout or 'ubuntu' in os.stdout"
+
+    - name: Install Python (Arch)
+      raw: pacman -Sy --noconfirm python
+      when:
+        - py.rc != 0
+        - "'arch' in os.stdout"
+
+    - name: Install Python (Alpine)
+      raw: apk add --no-cache python
+      when:
+        - py.rc != 0
+        - "'alpine' in os.stdout"

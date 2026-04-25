@@ -1,0 +1,2 @@
+- import_playbook: modules/bootstrap.yml
+- import_playbook: modules/install_packages.yml
