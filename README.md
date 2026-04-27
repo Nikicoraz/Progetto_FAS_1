@@ -84,11 +84,19 @@ e eseguita con il comando:
 docker run --rm -p 8888:8888 local/top_github
 ```
 
+infine, per accedere all'interfaccia web, occorre accedere con il link che contiene il token di accesso che viene stampato su `stdout` all'avvio dell'immagine.
+
+Alternativamente, si può de-commentare l'ultima riga del Dockerfile per togliere l'accesso tramite token, e quindi per accedere si può semplicemente navigare all'url `http://localhost:8888`.
+
+### Dettagli sull'immagine
+
 I file del dataset nel container sono scaricati direttamente nell'immagine, e non montati come volume, per cui ogni modifica al notebook tramite l'interfaccia web fornita dal container non è persistente.
 
 Il build dell'immagine docker è suddivisa in due stage, uno per scaricare e preparare il dataset e uno per scaricare le dipendenze di Python.
 
 La suddivisione è fatta per ottenere un'immagine finale più piccola, in quanto non contiene le dipendenze bash o comunque file non utilizzati dal notebook, ma soprattutto per poter parallelizzare la preparazione del dataset e il download delle dipendenze di Python in quanto sono i passaggi che richiedono più tempo.
+
+### Docker compose
 
 Per comodità, è messo a disposizione anche un file `docker-compose.yml` in cui è specificato di fare il build dell'immagine e di fare il port-forwarding della porta 8888 del container sulla porta 8888 dell'host.
 
