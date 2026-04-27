@@ -52,24 +52,24 @@ Il progetto mette a disposizione lo script `./python/start_jupyter_notebook.sh` 
 Per installare le dipendenze occorre seguire i seguenti passaggi dentro alla cartella `./python`:
 
 1. Creare un virtual environment
-```
-python -m venv venv
-```
+    ```
+    python -m venv venv
+    ```
 
 2. Attivare il virtual environment
-```
-source ./venv/bin/activate
-```
+    ```
+    source ./venv/bin/activate
+    ```
 
 3. Installare le dipendenze con pip
-```
-pip install -r requirements.txt
-```
+    ```
+    pip install -r requirements.txt
+    ```
 
 4. Avviare jupyter notebook
-```
-jupyter notebook Analisi.ipynb
-```
+    ```
+    jupyter notebook Analisi.ipynb
+    ```
 
 ## Docker
 Il progetto mette a disposizione anche un Dockerfile con cui si può creare un'immagine docker con un'istanza di Jupyter per poter visualizzare il contenuto del Jupyter notebook.
