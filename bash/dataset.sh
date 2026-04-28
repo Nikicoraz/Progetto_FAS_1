@@ -3,11 +3,13 @@ set -euo pipefail
 IFS=$'\n\t'
 
 DATASET_URL="https://www.kaggle.com/api/v1/datasets/download/nalisha/github-top-repositories-dataset-starred-project"
+
+DOMAINS_DIR="$DATA_DIR/domains"
 DATA_DIR="../data"
+
 ZIP_FILE="$DATA_DIR/github_top_repositories.zip"
 CSV_FILE="${ZIP_FILE//.zip/.csv}"
 
-DOMAINS_DIR="$DATA_DIR/domains"
 
 function download_dataset() {
     if ! [ -d "$DATA_DIR" ]; then
@@ -81,7 +83,7 @@ else
     elif [ "$1" == "clean" ]; then
         clean
     else
-        echo "Usage ./dataset.sh command"
-        echo "command is one of download, prepare, clean"
+        echo "Usage ./dataset.sh COMMAND"
+        echo "COMMAND is one of download, prepare, clean"
     fi
 fi

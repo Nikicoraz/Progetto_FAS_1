@@ -27,4 +27,5 @@ EXPOSE 8888
 
 # Usare questo entrypoint se non si vuole usare un token per accedere all'interfaccia web
 # ENTRYPOINT ["/bin/sh", "-c", "source ./venv/bin/activate && jupyter notebook Analisi.ipynb --allow-root --ip=0.0.0.0 --no-browser --NotebookApp.token='' --NotebookApp.password=''"]
+
 ENTRYPOINT ["/bin/sh", "-c", "source ./venv/bin/activate && jupyter notebook Analisi.ipynb --allow-root --ip=0.0.0.0 --no-browser"]
