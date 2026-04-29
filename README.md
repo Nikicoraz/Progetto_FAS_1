@@ -1,5 +1,5 @@
-# Analisi delle repository più popolari di github
-Il progetto ha l'obbiettivo di effettuare alcune analisi sul seguente [dataset](https://www.kaggle.com/datasets/nalisha/github-top-repositories-dataset-starred-project/) riguardo le repository con più stelle di github, suddivise in base al loro dominio di sviluppo.
+# Analisi delle repository più popolari di Github
+Il progetto ha l'obbiettivo di effettuare alcune analisi sul seguente [dataset](https://www.kaggle.com/datasets/nalisha/github-top-repositories-dataset-starred-project/) riguardo le repository con più stelle di Github, suddivise in base al loro dominio di sviluppo.
 
 Il progetto è composto da quattro componenti:
 
@@ -32,7 +32,7 @@ Lo script è stato scritto in modo di utilizzare gli strumenti più comuni prese
 
 Nei sistemi minimali (come alpine linux), potrebbe essere necessario installare `bash`, `curl` e `unzip`.
 
-Le dipendenze dello script possono essere installate (o verificate) tramite il playbook ansible.
+Le dipendenze dello script possono essere installate (o verificate) tramite il playbook Ansible.
 
 ## Python
 Python viene utilizzato, tramite notebook Jupyter, per effettuare analisi sul dataset.
@@ -77,7 +77,7 @@ Per installare le dipendenze occorre eseguire i seguenti passaggi dentro alla ca
 
 
 ## Docker
-Il progetto mette a disposizione anche un Dockerfile con cui si può creare un'immagine docker con un'istanza di Jupyter per poter visualizzare il contenuto del Jupyter notebook.
+Il progetto mette a disposizione anche un Dockerfile con cui si può creare un'immagine Docker con un'istanza di Jupyter per poter visualizzare il contenuto del Jupyter notebook.
 
 L'immagine può essere creata con il comando:
 ```

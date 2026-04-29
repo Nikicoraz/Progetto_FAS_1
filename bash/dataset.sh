@@ -4,8 +4,8 @@ IFS=$'\n\t'
 
 DATASET_URL="https://www.kaggle.com/api/v1/datasets/download/nalisha/github-top-repositories-dataset-starred-project"
 
-DOMAINS_DIR="$DATA_DIR/domains"
 DATA_DIR="../data"
+DOMAINS_DIR="$DATA_DIR/domains"
 
 ZIP_FILE="$DATA_DIR/github_top_repositories.zip"
 CSV_FILE="${ZIP_FILE//.zip/.csv}"

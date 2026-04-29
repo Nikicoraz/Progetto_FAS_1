@@ -23,7 +23,7 @@ if ! source ./$VENV/bin/activate; then
 fi
 
 # Installazione e avvio jupyter
-if ! jupyter-notebook Analisi.ipynb; then
+if ! jupyter-notebook $NOTEBOOK; then
     echo -n "Jupyter notebook was not found, do you want to try to install the python dependencies? [y/N]: "
     read -r input
 
